@@ -1,6 +1,7 @@
 package presenter
 
 import (
+	"encoding/json"
 	"fmt"
 	"net/http"
 
@@ -35,5 +36,9 @@ func (u *Todo) RenderError(err error) {
 func (u *Todo) PostRender(todos *[]entity.Todo) {
 	u.w.WriteHeader(http.StatusOK)
 	// httpでentity.Todo.Nameを出力
-	fmt.Fprint(u.w, todos)
+	json, err := json.Marshal(&todos)
+	if err != nil {
+		fmt.Println("json error")
+	}
+	fmt.Fprint(u.w,string(json))
 }
