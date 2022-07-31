@@ -33,6 +33,14 @@ func Serve(addr string) {
 		RepoFactory:   gateway.NewUserRepository,
 		Conn:          conn,
 	}
+	todo := controller.Todo{
+		OutputFactory: presenter.NewTodoOutputPort,
+		InputFactory:  interactor.NewTodoInputPort,
+		RepoFactory:   gateway.NewTodoRepository,
+		Conn:          conn,
+	}
+	http.HandleFunc("/todo/", todo.GetTodoByID)
+	http.HandleFunc("/todos", todo.GetTodo)
 	http.HandleFunc("/user/", user.GetUserByID)
 	http.HandleFunc("/users", user.GetUser)
 	err = http.ListenAndServe(addr, nil)

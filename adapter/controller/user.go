@@ -2,7 +2,6 @@ package controller
 
 import (
 	"database/sql"
-	"fmt"
 	"net/http"
 	"strings"
 
@@ -17,7 +16,6 @@ type User struct {
 }
 
 func (u *User) GetUserByID (w http.ResponseWriter, r *http.Request) {
-	fmt.Println("入ってきた")
 	ctx := r.Context()
 	userID := strings.TrimPrefix(r.URL.Path, "/user/")
 	outputPort := u.OutputFactory(w)

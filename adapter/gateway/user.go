@@ -33,7 +33,6 @@ func (u *UserRepository) GetUserByID(ctx context.Context, userID string) (*entit
 		log.Println(err)
 		return nil, errors.New("Internal Server Error. adapter/gateway/GetUserByID")
 	}
-	fmt.Println("成功してるよ")
 	return &user, nil
 }
 
