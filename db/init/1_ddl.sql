@@ -17,6 +17,23 @@ CREATE TABLE IF NOT EXISTS `clean_architecture`.`user` (
 ENGINE = InnoDB
 COMMENT = 'ユーザ';
 
+-- -----------------------------------------------------
+-- Table `clean_architecture`.`todo`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `clean_architecture`.`todo` (
+  `todo_id` VARCHAR(128) NOT NULL COMMENT 'todo ID',
+  `user_id` VARCHAR(128) NOT NULL COMMENT 'ユーザ ID',
+  `title` VARCHAR(128) NOT NULL COMMENT 'タイトル',
+  `content` VARCHAR(128) NOT NULL COMMENT '内容',
+  `status` VARCHAR(128) NOT NULL COMMENT 'ステータス',
+  PRIMARY KEY (`todo_id`),
+  FOREIGN KEY (`user_id`)
+    REFERENCES user(`id`)
+    ON DELETE CASCADE
+  )
+ENGINE = InnoDB
+COMMENT = 'todo';
+
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
